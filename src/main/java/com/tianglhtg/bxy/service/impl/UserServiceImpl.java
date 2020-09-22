@@ -41,6 +41,17 @@ public class UserServiceImpl implements UserService{
 		JSONArray json = JSONArray.fromObject(list);	
 		return json.toString();
 	}
+	
+
+	@Override
+	public String attatchUsername(String uname) {
+		// TODO Auto-generated method stub
+		String  sql = "select username from t_r_user where uname = trim('"+uname+"')";
+		Map usernameMap = userDao.attatchUsername(sql);
+		
+		return usernameMap.get("username").toString();
+
+	}
 
 
 	@Override
@@ -165,4 +176,20 @@ public class UserServiceImpl implements UserService{
 
 		return userDao.selectDataById(sql);
 	}
+
+
+	@Override
+	public Boolean userValidate(String uname) {
+		// TODO Auto-generated method stub
+		String substring = uname.substring(uname.lastIndexOf("=")+1);
+		String sql = "select count(uname) from t_r_user where uname = trim('"+substring+"')";
+		if(userDao.userValidate(sql)>0) {
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
+
+
 }

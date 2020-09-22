@@ -16,19 +16,12 @@
 	<!-- 扫描 -->
 	<context:component-scan base-package="com.tianglhtg.bxy.*"/>
 
-	<!-- 引入属性文件 -->
-<!-- 	<bean id="propertyConfigurer"  class="core.common.PlatformPropertyConfigurer" />
-	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource" >
-		<property name="driver" value="${platform.db.driver}" />
-		<property name="driverUrl" value="${platform.db.url}" />
-		<property name="user" value="${platform.db.user}" />
-		<property name="password" value="${platform.db.password}" /> 
-	</bean> -->
+
 	
 	<!-- 管理数据源 -->
  	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/tianglhtg?serverTimezone=UTC" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/tianglhtg?characterEncoding=UTF-8" />
 		<property name="username" value="ini" />
 		<property name="password" value="ini" />
 	</bean>
@@ -69,6 +62,15 @@
 		<!-- 注入数据源 -->
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--默认编码-->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!--最大上传容量100MB,10*1024*1024-->
+        <property name="maxUploadSize" value="104857600"/>
+        <!--缓存-->
+        <property name="maxInMemorySize" value="4096"/>
+    </bean>
 	
 	<!-- 声明通知  -->
  	 <tx:advice id="txAdvice">

@@ -15,50 +15,54 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
 
 	<!-- 扫描controller -->
-	<context:component-scan base-package="com.tianglhtg.bxy.controller" />
+	<!-- <context:component-scan base-package="com.tianglhtg.bxy.controller" /> -->
 	
-	
+	 <context:component-scan base-package="com.tianglhtg.bxy.controller" use-default-filters="false">
+      	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	 </context:component-scan>
 	
 	
 
 
-    <mvc:default-servlet-handler />
-	<mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
+  	<!--   <mvc:default-servlet-handler />
+	<mvc:resources mapping="/static/**" location="/static/"></mvc:resources> -->
 
 	<!-- 配置视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 配置视图的前缀 -->
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/WEB-INF/views/" />
 		<!-- 配置视图的后缀 -->
 		<property name="suffix" value=".jsp" />
 		<!-- <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" /> -->
 	</bean>
-	<!--开启springmvc注解支持-->
-
 	
 	
+	<!-- 消息转换器 解决乱码-->
 	<mvc:annotation-driven >
-		    <!-- 消息转换器 解决乱码-->
+		    
 		    <mvc:message-converters register-defaults="true">
 		      <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 		        <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
 		      </bean>
 		    </mvc:message-converters>
-   </mvc:annotation-driven>
+    </mvc:annotation-driven>
   
+   
+	<mvc:annotation-driven />
+	
 	<mvc:interceptors>
-		
 		<mvc:interceptor>
-				<mvc:mapping path="/**"></mvc:mapping>
+				<mvc:mapping path="/**/**"></mvc:mapping>
+				<mvc:exclude-mapping path="/"></mvc:exclude-mapping>
 				<mvc:exclude-mapping path="/user/checklogin.do"></mvc:exclude-mapping>
-				<mvc:exclude-mapping path="/jsp/login.jsp"></mvc:exclude-mapping>
-				<!-- 不拦截静态资源 -->
-			   <!--  <mvc:exclude-mapping path="/user/checklogin"></mvc:exclude-mapping> -->
+				<mvc:exclude-mapping path="/user/quitlogin.do"></mvc:exclude-mapping>
+				<mvc:exclude-mapping path="WEB-INF/views/login.jsp"></mvc:exclude-mapping>
+			
 				<bean class="com.tianglhtg.bxy.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>	
 	
-	
+
 	
 </beans>

@@ -9,11 +9,16 @@ public interface UserService {
 	
 	public  String userList();
 	
+	public String attatchUsername(String uname);
+	
+	public Boolean userValidate(String uname);
 	
 	public String userAdd(String canshu);
 	public int userEdit(String param);
 	public String userDel(String dataids);
 
 	public Map selectDataById(String dataid);
+	
+	
 
 }

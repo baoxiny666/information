@@ -216,29 +216,45 @@
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
-
+	
+	<dependency>
+	    <groupId>org.apache.directory.studio</groupId>
+	    <artifactId>org.apache.commons.codec</artifactId>
+	    <version>1.8</version>
+	</dependency>
+	
+	 <!--处理excel-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.17</version>
+    </dependency>
 	
   </dependencies>
   <build>
     <finalName>information</finalName>
+    <resources>  
+            <resource>  
+                <directory>src/main/java</directory>  
+                <includes>  
+                    <include>**/*.properties</include>  
+                    <include>**/*.xml</include>  
+                </includes>  
+                <!-- 是否替换资源中的属性-->  
+                <filtering>false</filtering>  
+            </resource>  
+            <resource>  
+                <directory>src/main/resources</directory>  
+              
+            </resource>  
+	</resources> 
     <plugins>
-    	<plugin>
-    		<groupId>org.eclipse.jetty</groupId>
-		    <artifactId>jetty-maven-plugin</artifactId>
-		    <version>9.4.31.v20200723</version>
-		    <executions>
-		      <execution>
-		      <!-- 在jett运行成功后 运行 jetty的服务 --> 
-		      
-		        <phase>package</phase>
-		      	<goals>
-		      		<goal>
-		      		  run
-		      		</goal>
-		      	</goals>
-		      </execution>
-		    </executions>
-    	</plugin>
+    	
     	
     	<plugin>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->

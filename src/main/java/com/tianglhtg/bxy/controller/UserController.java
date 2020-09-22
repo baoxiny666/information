@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -44,19 +45,30 @@ public class UserController {
 		User user = new User();
 		user.setUname(uname);
 		user.setUpassword(upassword);
-	
-		if(userService.loginCheck(user) != null){
+		User checkUser = userService.loginCheck(user);
+		if(checkUser != null){
 			session.setAttribute("LOGIN_USER", uname);
-			session.setMaxInactiveInterval(100);
+			session.setMaxInactiveInterval(100000);
 			JSONObject obj = new JSONObject();
 			String jsonStr = "";
+			String username = checkUser.getUsername();
+			String uuidindex = checkUser.getUuidindex();
+			
+			
 			if("admin".equals(uname)) {
+				//String username = userService.attatchUsername(uname);
 				obj.put("flag", 2);
 				obj.put("account",uname);
+				obj.put("username",username);
+				obj.put("uuidindex",uuidindex);
 				jsonStr = JSONObject.fromObject(obj).toString();
 			}else {
+				
+				//String username = userService.attatchUsername(uname);
 				obj.put("flag", 1);
 				obj.put("account",uname);
+				obj.put("username",username);
+				obj.put("uuidindex",uuidindex);
 				jsonStr = JSONObject.fromObject(obj).toString();
 			}
 			return jsonStr;
@@ -70,6 +82,19 @@ public class UserController {
 			return jsonStr;
 	    }
 	}
+	
+	
+	 @RequestMapping(value="quitlogin",produces ="application/json;charset=utf-8")
+	 @ResponseBody
+	 public  String quitlogin(HttpServletRequest request,HttpServletResponse response) {
+		 request.getSession().removeAttribute("LOGIN_USER");
+		 request.getSession().invalidate();
+		 
+		 JSONObject obj = new JSONObject();
+		 obj.put("flag", "已注销");
+		 String jsonStr = JSONObject.fromObject(obj).toString();
+		 return jsonStr;
+	 }
 	
 	
 	/**
@@ -98,7 +123,18 @@ public class UserController {
     }
     
     
+    /**
+     * 检查用户名是否注册过
+     * 
+     */
     
+    @RequestMapping(value="/userValidate")
+    @ResponseBody
+    public  Boolean userValidate(String uname) {
+    	Boolean bool = userService.userValidate(uname);
+	
+        return bool;
+    }
     
     
     /**

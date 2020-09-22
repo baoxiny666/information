@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<!-- 别名的设置 -->
 	<typeAliases>
-		<package name="cn.lianhtg.dao" />
+		<package name="cn.tianglhtg.bxy.dao" />
 	</typeAliases>
 
 </configuration>

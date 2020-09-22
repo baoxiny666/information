@@ -2,6 +2,16 @@
 		
 	})
 	
+	
+	function on_return(){
+		if(window.event.keyCode == 13){
+			if (document.all('daanniu')!=null){
+				document.all('daanniu').click();
+			}
+		}
+	}
+	
+	
 	function loginCheck(){
 		var uname = $("#uname").attr("value");    //用户名
     	var upassword = $("#upassword").attr("value");      //密码
@@ -28,16 +38,16 @@
     	
     	var data= {uname:uname,upassword:upassword};
     	        
-    	 $.ajax({
+    	$.ajax({
     	           type:"POST",
     	           url:basePath+"user/checklogin.do",
     	           data:data,
     	           dataType:'json',
     	           success:function(msg){
     	               if(msg.flag==1){
-    	                     window.location.href = "http://www.baidu.com";   
+    	                     window.location.href = basePath+"menupage/menu_test.jsp?username="+msg.username;   
     	               }else if(msg.flag==2){
-    	            	     window.location.href = basePath+"maintenance/index.jsp"; 
+    	            	     window.location.href = basePath+"maintenance/index.jsp?username="+msg.username; 
     	               }else{
     	            	   var type = 'auto';
     	            	   layer.open({
