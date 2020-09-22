@@ -8,9 +8,9 @@
 			<if test="uname != null and uname != ''">
 				and uname = #{uname}
 			</if>
-			<if test="upassword != null and upassword != ''">
+			<!-- <if test="upassword != null and upassword != ''">
 				and upassword = #{upassword}
-			</if>
+			</if> -->
 		</where>
     </select>
 </mapper>

@@ -12,13 +12,14 @@ public class User {
 	private String uuidindex;
 	private int rank;
 	private String company;
+	private String companyid;
 
 	// 构造函数
 	public User() {
 		super();
 	}
 
-	public User(Integer uno, String uname, String upassword, String username,Date tianbsj,String uuidindex,int rank,String company) {
+	public User(Integer uno, String uname, String upassword, String username,Date tianbsj,String uuidindex,int rank,String company,String companyid) {
 		super();
 		this.uno = uno;
 		this.uname = uname;
@@ -28,6 +29,7 @@ public class User {
 		this.uuidindex = uuidindex;
 		this.rank = rank;
 		this.company = company;
+		this.companyid = companyid;
 		
 	}
 
@@ -94,6 +96,15 @@ public class User {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+
+	public String getCompanyid() {
+		return companyid;
+	}
+
+	public void setCompanyid(String companyid) {
+		this.companyid = companyid;
+	}
+	
 	
 	
 	

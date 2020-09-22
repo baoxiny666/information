@@ -10,9 +10,12 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.tianglhtg.bxy.dao.UserDao;
+import com.tianglhtg.bxy.entity.Md5;
 import com.tianglhtg.bxy.entity.User;
 import com.tianglhtg.bxy.service.UserService;
 
@@ -58,6 +61,7 @@ public class UserServiceImpl implements UserService{
 	public String userAdd(String canshu) {
 		// TODO Auto-generated method stub
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "")+System.currentTimeMillis();
+		Md5 md5 = new Md5();
 		// 字符串中数据提取
 		com.alibaba.fastjson.JSONObject jo=new com.alibaba.fastjson.JSONObject();
 		Map dataMap = jo.parseObject(canshu, Map.class);
@@ -83,11 +87,21 @@ public class UserServiceImpl implements UserService{
 		Iterator iter = dataMap.keySet().iterator();
 		while(iter.hasNext()) {
 			String key = (String)iter.next();
-			String data = "key:"+key+",value="+"'"+dataMap.get(key)+"'";
-			System.out.println(data);
+			if("upassword".equals(key)) {
+				String data = "key:"+key+",value="+"'"+ md5.encrypt32(dataMap.get(key).toString())+"'";
+				System.out.println(data);
+				
+				columns.append(key).append(",");
+				values.append("'"+md5.encrypt32(dataMap.get(key).toString())+"'").append(",");
+			}else {
+				String data = "key:"+key+",value="+"'"+dataMap.get(key)+"'";
+				System.out.println(data);
+				
+				columns.append(key).append(",");
+				values.append("'"+dataMap.get(key)+"'").append(",");
+			}
 			
-			columns.append(key).append(",");
-			values.append("'"+dataMap.get(key)+"'").append(",");
+			
 			
 		}
 		
@@ -107,7 +121,7 @@ public class UserServiceImpl implements UserService{
 		// 字符串中数据提取
 		com.alibaba.fastjson.JSONObject jo=new com.alibaba.fastjson.JSONObject();
 		Map dataMap = jo.parseObject(param, Map.class);
-		
+		Md5 md5 = new Md5();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 	 	String currenttime = df.format(new Date());// new Date()为获取当前系统时间
 	 	
@@ -123,12 +137,35 @@ public class UserServiceImpl implements UserService{
 		Iterator iter = dataMap.keySet().iterator();
 		Map resultMap = new HashMap();
 		while(iter.hasNext()) {
+			
+	
 			String key = (String)iter.next();
-			String data = "key:"+key+",value="+dataMap.get(key);
-			System.out.println(data);
-			if(!key.equals("uuidindex")){
-				sets.append(key).append("='").append(dataMap.get(key)).append("',");
+			/*
+			 * if("upassword".equals(key) &&
+			 * !StringUtils.isBlank(dataMap.get(key).toString())) { String data =
+			 * "key:"+key+",value="+dataMap.get(key); System.out.println(data);
+			 * if(!key.equals("uuidindex")){
+			 * sets.append(key).append("='").append(dataMap.get(key)).append("',"); } }
+			 */
+			
+			if("upassword".equals(key)) {
+				if(!StringUtils.isBlank(dataMap.get(key).toString())) {
+					String data = "key:"+key+",value="+"'"+ md5.encrypt32(dataMap.get(key).toString())+"'";
+					System.out.println(data);
+					sets.append(key).append("='").append(md5.encrypt32(dataMap.get(key).toString())).append("',");
+				}else {
+					continue;
+				}
+				
+			}else {
+				String data = "key:"+key+",value="+dataMap.get(key);
+				System.out.println(data);
+				if(!key.equals("uuidindex")){
+					sets.append(key).append("='").append(dataMap.get(key)).append("',");
+				}
 			}
+			
+			
 		
 			
 		}
@@ -189,6 +226,18 @@ public class UserServiceImpl implements UserService{
 			return true;
 		}
 		
+	}
+
+
+	@Override
+	public Boolean changePassword(String upassword, String uuidindex) {
+		// TODO Auto-generated method stub
+		String sql = "update t_r_user set upassword = '"+upassword+"' where uuidindex='"+uuidindex+"'";
+		int updatepass= userDao.changePassword(sql);
+		if(updatepass > 0) {
+			return true;
+		}
+		return false;
 	}
 
 

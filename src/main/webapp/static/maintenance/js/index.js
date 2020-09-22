@@ -12,8 +12,9 @@
 							{field:"rank",title:"序号",width:50,align:"center"},
 							{field:"uuidindex",title:"uuid序列",width:80,align:"center",hidden:"true"},
 							{field:"uname",title:"用户名",width:150,align:"center"},
-							{field:"upassword",title:"密码",width:150,align:"center"},
+							{field:"upassword",title:"密码",width:150,align:"center",hidden:"true"},
 							{field:"username",title:"用户名称",width:140,align:"center"},
+							{field:"companyid",title:"所属公司ID",width:200,align:"center"},
 							{field:"company",title:"所属公司",width:200,align:"center"},
 							{field:"tianbsj",title:"填报时间",width:150,align:"center","formatter":timeformat}
 							

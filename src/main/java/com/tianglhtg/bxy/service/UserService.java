@@ -18,6 +18,8 @@ public interface UserService {
 	public String userDel(String dataids);
 
 	public Map selectDataById(String dataid);
+
+	public Boolean changePassword(String upassword,String uuidindex);
 	
 	
 

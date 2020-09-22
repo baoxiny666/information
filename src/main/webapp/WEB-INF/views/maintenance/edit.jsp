@@ -19,11 +19,12 @@
 <script type="text/javascript" src="<%=basePath%>static/easyui/jquery.easyui.min.js"></script>
 
 <script type="text/javascript" src="<%=basePath%>static/easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>static/img/favicon.ico" media="screen" />
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/easyui/themes/default/easyui.css">
 
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/maintenance/css/edit.css">
-<title>Insert title here</title>
+<title>质保书维护</title>
 <script type="text/javascript">
 
 	$.extend($.fn.validatebox.defaults.rules, {
@@ -75,7 +76,15 @@
     		 
 	    	},
 	    	message:'超出字数了或者字数过少'
+	    },
+	    companyid:{
+	    	validator:function(value){
+	    		var tex = /^[1-9]\d*|0$/;
+	    		return tex.test(value);
+	    	},
+	    	message:'只能输入非负整数'
 	    }
+   		
 			
 	
 	});
@@ -93,7 +102,7 @@
         <div class="kuang">
             <div class="titlestyle">密码: </div>
             <div  class="valuesstyle">
-                <input  class="easyui-validatebox"  data-options="required:true" type="text" id="upassword" name="upassword"  validType="passwordkuang" placeholder="密码"/>
+                <input  class="easyui-validatebox"  type="text" id="upassword" name="upassword"  validType="passwordkuang" placeholder="密码"/>
             </div>
         </div>
         <div class="kuang">
@@ -102,7 +111,13 @@
                 <input  class="easyui-validatebox"  data-options="required:true" type="text" id="username" name="username" placeholder="用户名称"/>
             </div>
         </div>
-         <div class="kuang">
+        <div class="kuang">
+            <div class="titlestyle">所属公司ID: </div>
+            <div  class="valuesstyle">
+                <input  class="easyui-validatebox"  data-options="required:true" type="text" id="companyid" validType="companyid"  name="companyid" placeholder="所属公司ID"/>
+            </div>
+        </div>
+        <div class="kuang">
             <div class="titlestyle">所属公司: </div>
             <div  class="valuesstyle">
                 <input  class="easyui-validatebox"  data-options="required:true" type="text" validType="company" id="company" name="company" placeholder="所属公司"/>

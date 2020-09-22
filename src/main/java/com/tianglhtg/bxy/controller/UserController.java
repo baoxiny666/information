@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.tianglhtg.bxy.entity.Md5;
 import com.tianglhtg.bxy.entity.User;
 import com.tianglhtg.bxy.service.UserService;
 
@@ -42,42 +44,59 @@ public class UserController {
 	@ResponseBody
 	public String  checklogin(HttpSession session,@RequestParam("uname") String uname,
 		@RequestParam("upassword") String upassword,Model model){
+		Md5 md5 = new Md5();
 		User user = new User();
 		user.setUname(uname);
-		user.setUpassword(upassword);
+		user.setUpassword(md5.encrypt32(upassword));
 		User checkUser = userService.loginCheck(user);
-		if(checkUser != null){
-			session.setAttribute("LOGIN_USER", uname);
-			session.setMaxInactiveInterval(100000);
-			JSONObject obj = new JSONObject();
-			String jsonStr = "";
-			String username = checkUser.getUsername();
-			String uuidindex = checkUser.getUuidindex();
-			
-			
-			if("admin".equals(uname)) {
-				//String username = userService.attatchUsername(uname);
-				obj.put("flag", 2);
-				obj.put("account",uname);
-				obj.put("username",username);
-				obj.put("uuidindex",uuidindex);
-				jsonStr = JSONObject.fromObject(obj).toString();
-			}else {
-				
-				//String username = userService.attatchUsername(uname);
-				obj.put("flag", 1);
-				obj.put("account",uname);
-				obj.put("username",username);
-				obj.put("uuidindex",uuidindex);
-				jsonStr = JSONObject.fromObject(obj).toString();
-			}
-			return jsonStr;
 		
+		
+		String passwordchaxun = checkUser.getUpassword();
+		String passshuru = md5.encrypt32(upassword);
+		
+	
+		
+		if(checkUser != null){
+			
+			if(passshuru.equals(passwordchaxun)) {
+				session.setAttribute("LOGIN_USER", uname);
+				session.setMaxInactiveInterval(100000);
+				JSONObject obj = new JSONObject();
+				String jsonStr = "";
+				String username = checkUser.getUsername();
+				String uuidindex = checkUser.getUuidindex();
+				
+				
+				if("admin".equals(uname)) {
+					//String username = userService.attatchUsername(uname);
+					obj.put("flag", 2);
+					obj.put("account",uname);
+					obj.put("username",username);
+					obj.put("uuidindex",uuidindex);
+					jsonStr = JSONObject.fromObject(obj).toString();
+				}else {
+					
+					//String username = userService.attatchUsername(uname);
+					obj.put("flag", 1);
+					obj.put("account",uname);
+					obj.put("username",username);
+					obj.put("uuidindex",uuidindex);
+					jsonStr = JSONObject.fromObject(obj).toString();
+				}
+				return jsonStr;
+			}else {
+				JSONObject obj = new JSONObject();
+				obj.put("flag", 0);
+				obj.put("error","密码错误");
+				String jsonStr = JSONObject.fromObject(obj).toString();
+				return jsonStr;
+			}
+			
 		}
 	    else{
 	    	JSONObject obj = new JSONObject();
 			obj.put("flag", 0);
-			obj.put("error","账号或密码错误");
+			obj.put("error","无此账户");
 			String jsonStr = JSONObject.fromObject(obj).toString();
 			return jsonStr;
 	    }
@@ -191,6 +210,17 @@ public class UserController {
     
     
     
+    /**
+     * 修改密码
+     */
+    @RequestMapping(value="/changePassword")
+    @ResponseBody
+    public  Boolean changePassword(@RequestParam("uuidindex") String uuidindex,
+    		@RequestParam("upassword") String upassword) {
+    	Md5 md5 = new Md5();
+    	Boolean bool = userService.changePassword(md5.encrypt32(upassword),uuidindex);
+        return bool;
+    }
     
 	
 	

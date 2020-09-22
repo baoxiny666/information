@@ -38,3 +38,17 @@
 	     }
 	     return false;
 	 }
+	 
+	 
+	 function changepassword(){
+		 var uuidindex = 22;
+		 layer.open({
+             type: 2,
+             closeBtn: 1,
+             title: "修改密码",
+             content: basePath+"menupage/changepassword?uuidindex="+uuidindex,
+             area: ["300px", "300px"]
+         });
+		 
+	 }
+	 

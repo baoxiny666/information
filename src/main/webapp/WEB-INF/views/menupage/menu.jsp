@@ -8,10 +8,10 @@
 	String uuidndex = request.getParameter("uuidndex"); */
 
 %>
-<html lang="en" class="no-js">
+<html>
 <head>
 <meta charset="utf-8">
-<title>用户登录</title>
+<title>质保书系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <script>
@@ -28,7 +28,7 @@
 </script>
 <link rel="stylesheet" href="<%=basePath%>static/layui/css/layui.css"/>
 <link rel="stylesheet" href="<%=basePath%>static/css/layer.css"/>
-
+<link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>static/img/favicon.ico" media="screen" />
 <link rel="stylesheet" href="<%=basePath%>static/menupage/css/index.css"/>
 <script type="text/javascript" src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script>
 <script src="<%=basePath%>static/js/base64.js"></script>
@@ -44,13 +44,16 @@
 		  		
 		  	</div>
 		  	<div class="top_left_two">
-		  		检化验电子上传系统
+		  		质保书系统
 		  	</div>
 		  	<div class="top_right_one">
-		  		<div class="login_pic">
+		  		<div class="login_pic" onclick="changepassword()">
 		  			<img alt="" width="25px" height="25px" src="<%=basePath%>static/menupage/img/login_user.png">
 		  		</div>
 		  		<div class="login_user">${username}</div>
+		  		<div class="login_edit" onclick="changepassword()">
+		  			<img alt="修改密码" width="20px" height="20px" src="<%=basePath%>static/menupage/img/changepassword.png">
+		  		</div>
 		  		<div class="login_quit" onclick="login_quit()">
 		  			<img alt="退出登录" width="20px" height="20px" src="<%=basePath%>static/menupage/img/login_user_quit.png">
 		  		</div>
@@ -76,6 +79,10 @@
 		   
 		  </div>
 		  
+		  
+		 
+
+
 	
 
 	</body>
@@ -116,5 +123,8 @@
 		 
 	  });
 	});
+	
+	
+	
 
 </script>

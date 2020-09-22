@@ -5,16 +5,17 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<html lang="en" class="no-js">
+<html>
 <head>
 <meta charset="utf-8">
-<title>用户登录</title>
+<title>质保书系统用户登录</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <script>
 	var path = '<%=path%>';
 	var basePath = '<%=basePath%>';
 </script>
+	<link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>static/img/favicon.ico" media="screen" />
 	<link rel="stylesheet" href="<%=basePath%>static/login/css/login.css"/>
 	<link rel="stylesheet" href="<%=basePath%>static/login/css/reset.css"/>
 	<link rel="stylesheet" href="<%=basePath%>static/login/css/supersized.css"/>
@@ -25,13 +26,15 @@
 <body style="background:url(<%=basePath%>static/img/loginbackground.png) no-repeat;background-size:100% 100%;background-attachment: fixed;" onkeydown="on_return();">
 
 	<div class="login_kuang">
-		<div border="0" width="300px" height="400px"   style="background: url(<%=basePath%>static/img/bg_login.png) repeat;background-color:#fff;overflow:hidden;border:2px solid #F0FFFF">
+	    <div class="zhibstitle">质保书系统</div>
+		<div border="0" width="300px" height="400px"   style="background: url(<%=basePath%>static/img/bg_login.png) repeat;background-color:#fff;overflow:hidden;border:2px solid #F0FFFF;position;relative">
 		   <div style="width:100%;height:10px"></div>
 		   <div class="topimage">
 				<img style="width:65px;height:65px;" src="<%=basePath%>static/img/peoplePic.png">
 		   </div>
 		   <div style="width:100%;height:10px"></div>
-				   <form id="formsub" action="/information/user/checklogin.do" method="post">
+		   		   
+				   <form id="formsub" action="" method="post">
 					   <div class="accountsquare">
 							<div class='accountsquare_left'  placeholder='请输入账户'>
 								<input type="text" id="uname" name="uname" class="uname"

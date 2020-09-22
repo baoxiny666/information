@@ -89,6 +89,17 @@
 		margin-left:30px;
 	}
 	
+	.zhibstitle{
+		text-align:center;
+		font-size:28px;
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-family: 'Nunito', sans-serif;
+		position:absolute;
+		bottom: 437px;
+    	right: 82px;
+	}
 	
 	
 	

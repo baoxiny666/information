@@ -79,6 +79,16 @@ public class PageController {
 	}
 	
 	
+	@RequestMapping(value="menupage/changepassword")
+	public ModelAndView changePass(HttpServletRequest req)
+	{
+		String uuidindex = req.getParameter("uuidindex");
+		ModelAndView mv = new ModelAndView("menupage/changepassword");
+		mv.addObject("uuidindex", uuidindex);
+		return mv;
+	}
+	
+	
 	  public static String enAndDeCode(String str) throws Exception {
 	        byte[] byteArray = decryptBASE64(str);
 	        return new String(byteArray);

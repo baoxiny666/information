@@ -27,7 +27,10 @@
 	        data:{"dataid":dataid},//将对象转为json字符串
 	        success: function(obj) {
 	            for (var item in obj){	
-	            	$("#"+item).val(obj[item]);
+	            	if(item != 'upassword'){
+	            		$("#"+item).val(obj[item]);
+	            	}
+	            	
 				}
 	        }
 	    });
