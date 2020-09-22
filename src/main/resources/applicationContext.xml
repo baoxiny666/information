@@ -85,8 +85,8 @@
 		</tx:attributes>
 	</tx:advice>  
 	
-		<!-- aop，声明切入点  -->
- 	 <aop:config>
+	<!-- aop，声明切入点  -->
+ 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.tianglhtg.bxy.service.*.*(..))"/>
 	</aop:config> 
 	
