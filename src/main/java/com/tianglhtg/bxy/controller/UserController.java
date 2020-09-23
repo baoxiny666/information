@@ -65,6 +65,7 @@ public class UserController {
 				String jsonStr = "";
 				String username = checkUser.getUsername();
 				String uuidindex = checkUser.getUuidindex();
+				String companyid = checkUser.getCompanyid();
 				
 				
 				if("admin".equals(uname)) {
@@ -73,6 +74,7 @@ public class UserController {
 					obj.put("account",uname);
 					obj.put("username",username);
 					obj.put("uuidindex",uuidindex);
+					obj.put("companyid",companyid);
 					jsonStr = JSONObject.fromObject(obj).toString();
 				}else {
 					
@@ -81,6 +83,7 @@ public class UserController {
 					obj.put("account",uname);
 					obj.put("username",username);
 					obj.put("uuidindex",uuidindex);
+					obj.put("companyid",companyid);
 					jsonStr = JSONObject.fromObject(obj).toString();
 				}
 				return jsonStr;

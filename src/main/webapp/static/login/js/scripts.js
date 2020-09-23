@@ -46,7 +46,7 @@
     	           success:function(msg){
     	        	   
     	               if(msg.flag==1){
-    	            	   
+    	            	   debugger;
     	            	  var usernamejm =  encodeURI(encodeURI(msg.username));
     	            	  var uuidindexjm = window.Base64.encode(msg.uuidindex);
     	            	  var companyidjm = window.Base64.encode(msg.companyid);
