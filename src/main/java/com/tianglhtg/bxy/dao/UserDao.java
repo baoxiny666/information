@@ -27,15 +27,15 @@ public interface UserDao {
     public int userAdd(@Param("sql") String sql);
 	
 	@Update("${sql}")
-    public String userEdit(@Param("sql") String sql);
+    public int userEdit(@Param("sql") String sql);
 	
 	@Delete("${sql}")
-    public String userDel(@Param("sql") String sql);
+    public int userDel(@Param("sql") String sql);
 	
 	@Select("${sql}")
     public Map selectDataById(@Param("sql") String sql);
 	
 	@Update("${sql}")
-	public  Integer changePassword(@Param("sql") String sql);
+	public  int changePassword(@Param("sql") String sql);
 	
 }

@@ -49,14 +49,17 @@ public class PageController {
 	{
 		String username = req.getParameter("username");
 		String uuidindex = req.getParameter("uuidindex");
+		String companyid = req.getParameter("companyid");
 		
 		username = java.net.URLDecoder.decode(username, "UTF-8");
 		uuidindex = new String(Base64.decodeBase64(uuidindex));
+		companyid = new String(Base64.decodeBase64(companyid));
 		System.out.println(username);
 		System.out.println(uuidindex);
 		ModelAndView mv = new ModelAndView("menupage/menu");
 		mv.addObject("username", username);
 		mv.addObject("uuidindex", uuidindex);
+		mv.addObject("companyid", companyid);
 		return mv;
 	}
 	
@@ -65,9 +68,11 @@ public class PageController {
 	{
 		String username = req.getParameter("username");
 		String uuidindex = req.getParameter("uuidindex");
-		username = java.net.URLDecoder.decode(username, "UTF-8");
+		String companyid = req.getParameter("companyid");
 		
+		username = java.net.URLDecoder.decode(username, "UTF-8");
 		uuidindex = new String(Base64.decodeBase64(uuidindex));
+		companyid = new String(Base64.decodeBase64(companyid));
 		
 		
 		System.out.println(username);
@@ -75,6 +80,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("maintenance/index");
 		mv.addObject("username", username);
 		mv.addObject("uuidindex", uuidindex);
+		mv.addObject("companyid", companyid);
 		return mv;
 	}
 	

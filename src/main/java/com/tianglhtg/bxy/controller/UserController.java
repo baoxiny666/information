@@ -51,13 +51,13 @@ public class UserController {
 		User checkUser = userService.loginCheck(user);
 		
 		
-		String passwordchaxun = checkUser.getUpassword();
-		String passshuru = md5.encrypt32(upassword);
+		
 		
 	
 		
 		if(checkUser != null){
-			
+			String passwordchaxun = checkUser.getUpassword();
+			String passshuru = md5.encrypt32(upassword);
 			if(passshuru.equals(passwordchaxun)) {
 				session.setAttribute("LOGIN_USER", uname);
 				session.setMaxInactiveInterval(100000);

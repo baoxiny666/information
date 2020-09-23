@@ -36,7 +36,7 @@
 	
 	
 	.top .top_left_two{
-		width:calc(100% - 20px - 200px);
+		width:calc(100% - 20px - 230px);
 		height:60px;	
 		float:left;
 		color:white;
@@ -46,7 +46,7 @@
 	}
 	
 	.top .top_right_one{
-		width:200px;
+		width:230px;
 		height:60px;
 		float:left;
 	}
@@ -65,6 +65,26 @@
 	}
 	
 	.top .top_right_one .login_pic img{
+		vertical-align: middle;
+		margin-top: 17.5px;
+		
+	}
+	
+	
+	
+	.top .top_right_one .login_edit{
+		float:left;
+		width:30px;
+		height:60px;
+		vertical-align: middle;
+		text-align: center;
+		margin:0;
+		padding:0;
+		cursor:pointer;
+		
+	}
+	
+	.top .top_right_one .login_edit img{
 		vertical-align: middle;
 		margin-top: 17.5px;
 		
@@ -97,5 +117,6 @@
 	
 		vertical-align: middle;
 		margin-top: 20px;
+		margin-left: 12px;
 		
 	}

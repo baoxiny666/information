@@ -24,6 +24,7 @@
 	var deuuidindex = Base64.decode(uuidindex);--%>
 	var username = '${username}';
 	var uuidindex = '${uuidindex}';
+	var companyid =  '${companyid}';
 
 </script>
 <link rel="stylesheet" href="<%=basePath%>static/layui/css/layui.css"/>
@@ -31,7 +32,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>static/img/favicon.ico" media="screen" />
 <link rel="stylesheet" href="<%=basePath%>static/menupage/css/index.css"/>
 <script type="text/javascript" src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script>
-<script src="<%=basePath%>static/js/base64.js"></script>
+<script src="<%=basePath%>static/js/base64_ie.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/layui/layui.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/js/layer.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/menupage/js/index.js"></script>
@@ -47,12 +48,12 @@
 		  		质保书系统
 		  	</div>
 		  	<div class="top_right_one">
-		  		<div class="login_pic" onclick="changepassword()">
+		  		<div class="login_pic">
 		  			<img alt="" width="25px" height="25px" src="<%=basePath%>static/menupage/img/login_user.png">
 		  		</div>
 		  		<div class="login_user">${username}</div>
 		  		<div class="login_edit" onclick="changepassword()">
-		  			<img alt="修改密码" width="20px" height="20px" src="<%=basePath%>static/menupage/img/changepassword.png">
+		  			<img alt="修改密码" width="25px" height="25px" src="<%=basePath%>static/menupage/img/changepassword.png">
 		  		</div>
 		  		<div class="login_quit" onclick="login_quit()">
 		  			<img alt="退出登录" width="20px" height="20px" src="<%=basePath%>static/menupage/img/login_user_quit.png">
@@ -95,9 +96,9 @@
 		 $('.layui-body').empty();
 		
 		 if(bool ==true){
-			 $('.layui-body').append('<iframe src="'+menuconfig["dianzda"].nwurl+Base64.encode(uuidindex)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
+			 $('.layui-body').append('<iframe src="'+menuconfig["dianzda"].nwurl+window.Base64.encode(companyid)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
 		 }else{
-			 $('.layui-body').append('<iframe src="'+menuconfig["dianzda"].wwurl+Base64.encode(uuidindex)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
+			 $('.layui-body').append('<iframe src="'+menuconfig["dianzda"].wwurl+window.Base64.encode(companyid)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
 		 }
 	})	
 	
@@ -115,9 +116,9 @@
 		  }else{
 			  $('.layui-body').empty();
 			  if(bool ==true){
-				 $('.layui-body').append('<iframe src="'+menuconfig[id].nwurl+Base64.encode(uuidindex)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
+				 $('.layui-body').append('<iframe src="'+menuconfig[id].nwurl+window.Base64.encode(companyid)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
 			  }else{
-				 $('.layui-body').append('<iframe src="'+menuconfig[id].wwurl+Base64.encode(uuidindex)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
+				 $('.layui-body').append('<iframe src="'+menuconfig[id].wwurl+window.Base64.encode(companyid)+'" style="width:100%;height:100%;" scrolling="auto" frameborder="0"></iframe>');
 			  }
 		  }
 		 

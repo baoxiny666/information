@@ -5,8 +5,6 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	
-	String uuidndex = request.getParameter("uuidndex");
 %>
 <html>
 <head>
@@ -53,7 +51,7 @@
 
 		  <div class="layui-form-item">
 		    <div class="layui-input-block">
-		      <button class="layui-btn" lay-submit lay-filter="formchangePass">立即提交</button>
+		      <button class="layui-btn" lay-submit lay-filter="formchangePass">提交</button>
 		    </div>
 		  </div>
 	</form>
@@ -61,21 +59,31 @@
 
 </body>
 	<script>
-		layui.use('form', function(){
+		layui.use(['form','layer'], function(){
 		  var form = layui.form;
 		  //监听提交
 		  form.on('submit(formchangePass)', function(data){
-		    layer.msg(JSON.stringify(data.field));
 		    $.ajax({
 		           type:"POST",
 		           url:basePath+"user/changePassword.do",
 		           dataType:'json',
 		           data:{uuidindex:uuidindex,upassword:data.field.password},
 		           success:function(msg){
-		        	   window.location.href = basePath; 
+		        	   layer.alert("修改成功,点击关闭重新登录",
+		        			{
+		        		   		skin:'layui-layer-moly',
+		        		   		closeBtn:0
+		        			},function(){
+		        			   parent.layer.closeAll();
+		 		        	   top.location.href = basePath;
+		        			}	   
+		        	   );
+		        	   
 		           }
 		    });
+		    
 		    return false;
+		    
 		  });
 		  
 

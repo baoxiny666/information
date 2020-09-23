@@ -67,10 +67,10 @@
 						$("#addWindow").window({
 							content:content,
 					        title: "增加",
-					        width: 850,
+					        width: 900,
 					        modal: false,
 					        closed: false,
-					        height: 300,
+					        height: 350,
 					        inline:false,
 					        onClose:function(){
 								$(this).window("close");
@@ -93,10 +93,10 @@
 						$("#editWindow").window({
 							content:content,
 					        title: "修改",
-					        width: 850,
+					        width: 900,
 					        modal: false,
 					        closed: false,
-					        height: 300,
+					        height: 350,
 					        inline:false,
 					        onClose:function(){
 					        	

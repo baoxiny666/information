@@ -48,12 +48,16 @@
     	               if(msg.flag==1){
     	            	   
     	            	  var usernamejm =  encodeURI(encodeURI(msg.username));
-    	            	  var uuidindexjm = Base64.encode(msg.uuidindex);
-    	                  window.location.href = basePath+"menupage/menu?username="+usernamejm+"&uuidindex="+uuidindexjm; 
+    	            	  var uuidindexjm = window.Base64.encode(msg.uuidindex);
+    	            	  var companyidjm = window.Base64.encode(msg.companyid);
+    	            	  
+    	                  window.location.href = basePath+"menupage/menu?username="+usernamejm+"&uuidindex="+uuidindexjm+"&companyid="+companyidjm; 
     	               }else if(msg.flag==2){
     	            	  var usernamejm =  encodeURI(encodeURI(msg.username));
-    	            	  var uuidindexjm = Base64.encode(msg.uuidindex);
-    	            	  window.location.href = basePath+"maintenance/index?username="+usernamejm+"&uuidindex="+uuidindexjm; 
+    	            	  var uuidindexjm = window.Base64.encode(msg.uuidindex);
+    	            	  var companyidjm = window.Base64.encode(msg.companyid);
+    	            	  
+    	            	  window.location.href = basePath+"maintenance/index?username="+usernamejm+"&uuidindex="+uuidindexjm+"&companyid="+companyidjm; 
     	               }else{
     	            	   var type = 'auto';
     	            	   layer.open({

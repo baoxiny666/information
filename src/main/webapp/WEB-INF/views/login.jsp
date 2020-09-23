@@ -62,7 +62,7 @@
 
 	<!-- Javascript -->
 	<script src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script>
-	<script src="<%=basePath%>static/js/base64.js"></script>
+	<script src="<%=basePath%>static/js/base64_ie.js"></script>
 	<script src="<%=basePath%>static/js/layer.js"></script>
 	<script src="<%=basePath%>static/login/js/scripts.js"></script>
 	<%-- <script src="<%=basePath%>static/js/supersized.3.2.7.min.js"></script>

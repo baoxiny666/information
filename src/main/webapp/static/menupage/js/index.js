@@ -41,7 +41,6 @@
 	 
 	 
 	 function changepassword(){
-		 var uuidindex = 22;
 		 layer.open({
              type: 2,
              closeBtn: 1,
