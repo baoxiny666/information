@@ -2,12 +2,14 @@ package com.tianglhtg.bxy.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.tianglhtg.bxy.entity.User;
 
 public interface UserService {
 	public User loginCheck(User user);
 	
-	public  String userList();
+	public  String userList(User user);
 	
 	public String attatchUsername(String uname);
 	

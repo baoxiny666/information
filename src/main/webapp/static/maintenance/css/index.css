@@ -70,6 +70,21 @@ html,body{width:100%;height:100%}
     	
 	}
 
+	.xin_key_button{
+		background: url(../img/xin_key.png) no-repeat;
+    	background-size: 200px 31px;
+    	height: 31px;
+    	width: 210px;
+    	float:left;
+    	cursor:pointer;
+    	position:relative;
+	}
+	
+	.xin_jianju_button{
+		width:calc(100% - 540px);
+		height:31px;
+		float:left
+	}
 	.xin_daocmb_button{
 		background: url(../img/xin_daocmb.png) no-repeat;
     	background-size: 100px 31px;
@@ -104,7 +119,26 @@ html,body{width:100%;height:100%}
 	    padding-top: 6px;
 	    font-size: 15px;
 	}
-
+	
+	
+	#soso{
+		border: 0;  
+        outline: none;        
+        background-color: rgba(0, 0, 0, 0);
+        width:140px;
+        height:30px;
+        margin-left: 15px;
+	}
+	
+	.dianjsoso{
+		width: 30px;
+	    height: 30px;
+	    position: absolute;
+	    right: 10px;
+	    top: 0px;
+	    cursor:pointer;
+	}
+	
 	/* --ieÇå³ý--*/
 
 select::-ms-expand{ display: none; }

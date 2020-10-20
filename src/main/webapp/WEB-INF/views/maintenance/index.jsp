@@ -18,6 +18,7 @@
 </script>
 <%-- <script type="text/javascript" src="<%=basePath%>static/js/jquery-1.8.2.min.js"></script> --%>
 <script type="text/javascript" src="<%=basePath%>static/easyui/jquery.min.js"></script>
+<script src="<%=basePath%>static/js/base64_ie.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/easyui/jquery.easyui.min.js"></script>
 
 <script type="text/javascript" src="<%=basePath%>static/easyui/locale/easyui-lang-zh_CN.js"></script>
@@ -110,11 +111,13 @@
 			</div>
 		</div>
 	</div>	
-    <div id="tb" style="display:none;height:40px;"> 
-		<div id="ttt" style="margin-top:5px;float:left;">
+    <div id="tb" style="display:none;width:100%;height:40px;"> 
+		<div id="ttt" style="width:100%;height:40px;margin-top:5px;float:left;">
 			
 			
 		</div>
 	</div>  
+	
+	
 </body>
 </html>

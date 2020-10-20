@@ -9,7 +9,7 @@
 	var config = {
 					"userconfig":[
 							{"field":"ck","checkbox":"true"},
-							{field:"rank",title:"序号",width:50,align:"center"},
+							{field:"rank",title:"序号",width:50,align:"center",hidden:"true"},
 							{field:"uuidindex",title:"uuid序列",width:80,align:"center",hidden:"true"},
 							{field:"uname",title:"用户名",width:150,align:"center"},
 							{field:"upassword",title:"密码",width:150,align:"center",hidden:"true"},
@@ -26,6 +26,12 @@
 	$(function(){
 		anniu_view_no();
 		onload_colunmn();
+		
+		$(document).keydown(function (event) {
+		    if (event.keyCode == 13) { //keyCode=13是回车键
+		        $('.dianjsoso').triggerHandler('click');
+		    }
+		});
 	})
 
 
@@ -36,10 +42,15 @@
 		qiy = " and F_TIANBDW='"+enterid+"'";*/
 		$("#ttt").append('<div  class="xin_add_button"    onclick="javascript:doAdd()"><div class="xin_button_font">增加</div></div>'+  
 						 '<div  class="xin_edit_button"    onclick="javascript:doEdit()"><div class="xin_button_font">修改</div></div>'+  
-						 '<div  class="xin_del_button"    onclick="javascript:doDelete()"><div class="xin_button_font">删除</div></div>');
+						 '<div  class="xin_del_button"    onclick="javascript:doDelete()"><div class="xin_button_font">删除</div></div>'+
+						 '<div  class="xin_jianju_button"></div>'+
+						 '<div  class="xin_key_button">'+
+						 '<input id="soso" placeholder="请输入搜索内容" type="text" ><div class="dianjsoso" onclick="reloadData()"></div></div>');
 		refreash();
 
 	}
+	
+	
 
 	function refreash(){
 		try {
@@ -65,10 +76,10 @@
 		    columns:[config["userconfig"]],
 		    nowrap:false,
 		    pagination:true,
-		    rownumbers:false,
+		    rownumbers:true,
 		    onBeforeLoad:beforeLoad,
-		    pageSize:20,   //表格中每页显示的行数
-		    pageList:[20,50,100],
+		    pageSize:5,   //表格中每页显示的行数
+		    pageList:[5,10,100],
 		    loadMsg:"数据正在努力加载，请稍后...",  
 		    singleSelect:false,
 			onLoadSuccess:function(data) {
@@ -83,6 +94,10 @@
             }
 
         })
+		
+		
+		 //获取数据网格的pager对象
+      
 		/*fenyStyle();*/
 		
 	}
@@ -137,7 +152,6 @@
 
 	/*修改功能*/
 	function doEdit(){
-		debugger;
     	var rows = $('#tt').datagrid('getChecked');
     	if(rows.length <= 0){
     		$.messager.alert("提示信息",'请选择一条数据编辑！','info');
@@ -229,7 +243,7 @@
 		}
 	}
 	function beforeLoad(param) {
-		
+		param.sosoparam = $("#soso").val();
 	}
 
 

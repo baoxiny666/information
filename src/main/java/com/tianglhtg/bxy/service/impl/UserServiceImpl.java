@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,13 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public String userList() {
+	public String userList(User user) {
 		// TODO Auto-generated method stub
 		HashMap<String,String> pmap = new HashMap<String, String>();
 	
 		
 
-		List<User> list = userDao.userList();
+		List<User> list = userDao.userList(user);
 		JSONArray json = JSONArray.fromObject(list);	
 		return json.toString();
 	}

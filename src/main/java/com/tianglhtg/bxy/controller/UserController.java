@@ -130,10 +130,10 @@ public class UserController {
 	 */
     @RequestMapping(value="userList",produces ="application/json;charset=utf-8")
     @ResponseBody
-    public  String userList(Integer page, Integer rows,HttpServletRequest request) {
+    public  String userList(Integer page, Integer rows,User user,HttpServletRequest request) {
     	Page pages = PageHelper.startPage(page, rows, true);
 		
-        String list = userService.userList();
+        String list = userService.userList(user);
         Long total = pages.getTotal();
         Map map = new HashMap();
         map.put("total", total);

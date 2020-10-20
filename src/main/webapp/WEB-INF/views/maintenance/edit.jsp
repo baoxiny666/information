@@ -16,6 +16,7 @@
 	var dataid = "<%=dataid%>";
 </script>
 <script type="text/javascript" src="<%=basePath%>static/easyui/jquery.min.js"></script>
+<script src="<%=basePath%>static/js/base64_ie.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/easyui/jquery.easyui.min.js"></script>
 
 <script type="text/javascript" src="<%=basePath%>static/easyui/locale/easyui-lang-zh_CN.js"></script>
@@ -39,7 +40,6 @@
 	    		var rex = /^[\u4e00-\u9fa5]+|[a-zA-Z0-9]+$/;
 	            if(rex.test(value))//手机号码正确的话，校验是否已存在
 	            {
-	                debugger;
 	                var url = basePath+'/user/userValidate.do?uname='+value;
 	                var ret = $.ajax({url:url,async:false,cache:false,type:"post"}).responseText;//这里一定要用这种方式，如果是在ajax的回调函数里面return就不行。
 	                var b = ret=="true";

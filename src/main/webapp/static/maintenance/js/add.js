@@ -26,6 +26,7 @@
 		    $.each(fields, function(index, field) {
 		        obj[field.name] = field.value; //通过变量，将属性值，属性一起放到对象中
 		    })
+		    obj["companybase"] = window.Base64.encode(obj["companyid"]);
 
 		    console.log(JSON.stringify(obj));
 		    var dats=JSON.stringify(obj);

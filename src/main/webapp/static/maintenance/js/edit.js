@@ -50,6 +50,7 @@
 		    })
 	
 		    obj["uuidindex"] = dataid;
+		    obj["companybase"] = window.Base64.encode(obj["companyid"]);
 		    console.log(JSON.stringify(obj));
 		    var dats=JSON.stringify(obj);
 	

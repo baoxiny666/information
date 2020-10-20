@@ -13,6 +13,8 @@ public class User {
 	private int rank;
 	private String company;
 	private String companyid;
+	
+	private String sosoparam;
 
 	// 构造函数
 	public User() {
@@ -103,6 +105,14 @@ public class User {
 
 	public void setCompanyid(String companyid) {
 		this.companyid = companyid;
+	}
+
+	public String getSosoparam() {
+		return sosoparam;
+	}
+
+	public void setSosoparam(String sosoparam) {
+		this.sosoparam = sosoparam;
 	}
 	
 	

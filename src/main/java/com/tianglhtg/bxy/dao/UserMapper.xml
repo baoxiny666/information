@@ -13,4 +13,31 @@
 			</if> -->
 		</where>
     </select>
+    
+    
+    <select id="userList" parameterType="com.tianglhtg.bxy.entity.User" resultType="com.tianglhtg.bxy.entity.User">
+        select  @n:=@n+1 rank,
+        		uu.uno,
+        		uu.uname,
+        		uu.upassword,
+        		uu.username,
+        		uu.tianbsj,
+        		uu.uuidindex,
+        		uu.company,
+        		uu.companyid 
+        from t_r_user uu,
+        (select @n:= 0) d 
+        <where>
+			<if test="sosoparam != null and sosoparam != ''">
+				and (uname like concat(concat('%',#{sosoparam}),'%')
+					 or username like concat(concat('%',#{sosoparam}),'%')  
+					 or company like concat(concat('%',#{sosoparam}),'%') 
+					 or companyid like concat(concat('%',#{sosoparam}),'%'))
+			</if>
+			<!-- <if test="upassword != null and upassword != ''">
+				and upassword = #{upassword}
+			</if> -->
+		</where>
+		order by uu.tianbsj desc
+    </select>
 </mapper>
