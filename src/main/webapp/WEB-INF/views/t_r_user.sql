@@ -7,7 +7,7 @@ CREATE TABLE `t_r_user` (
   `uuidindex` varchar(1000) DEFAULT NULL,
   `company` varchar(1000) DEFAULT NULL,
   `companyid` varchar(100) DEFAULT NULL,
-	`companybase` varchar(500) DEFAULT NULL,
+  `companybase` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`uno`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 

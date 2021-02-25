@@ -1,0 +1,14 @@
+html,body{width:100%;height:100%}
+*{margin: 0;padding:0;}
+.pics_div {
+	width:500px;
+	height: 243px;
+	zoom: 0.8;
+}
+.pics {
+	width: 500px;
+	height: 243px;
+	background-size: 500px 243px;
+
+	background: url(../img/error.png) no-repeat;
+}

@@ -94,6 +94,23 @@ public class PageController {
 		return mv;
 	}
 	
+    @RequestMapping(value = {"/qigscan/index"})
+    public  String qigScan(){
+        return "/qigscan/index";
+    }
+
+
+    @RequestMapping(value = {"/qigscan/success"})
+    public  String qigSuccess(){
+        return "/qigscan/success";
+    }
+
+    @RequestMapping(value = {"/qigscan/error"})
+    public  String qigError(){
+        return "/qigscan/error";
+    }
+
+	
 	
 	  public static String enAndDeCode(String str) throws Exception {
 	        byte[] byteArray = decryptBASE64(str);
