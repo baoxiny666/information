@@ -9,9 +9,14 @@ public class InsertAdvise {
     private String depart_ment_fu_name;
     private Integer depart_ment_son;
     private String depart_ment_son_name;
-    private String rules_name;
+    private Integer rules_big;
+    private Integer rules_small;
+    private String rules_big_name;
+    private String rules_small_name;
+    
     private String flow_name;
-
+    
+    
     private String advise_yij;
     private String submit_person;
     private String tele_phone;
@@ -46,11 +51,33 @@ public class InsertAdvise {
 	public void setDepart_ment_son_name(String depart_ment_son_name) {
 		this.depart_ment_son_name = depart_ment_son_name;
 	}
-	public String getRules_name() {
-		return rules_name;
+	
+	
+	
+	
+	public Integer getRules_big() {
+		return rules_big;
 	}
-	public void setRules_name(String rules_name) {
-		this.rules_name = rules_name;
+	public void setRules_big(Integer rules_big) {
+		this.rules_big = rules_big;
+	}
+	public Integer getRules_small() {
+		return rules_small;
+	}
+	public void setRules_small(Integer rules_small) {
+		this.rules_small = rules_small;
+	}
+	public String getRules_big_name() {
+		return rules_big_name;
+	}
+	public void setRules_big_name(String rules_big_name) {
+		this.rules_big_name = rules_big_name;
+	}
+	public String getRules_small_name() {
+		return rules_small_name;
+	}
+	public void setRules_small_name(String rules_small_name) {
+		this.rules_small_name = rules_small_name;
 	}
 	public String getFlow_name() {
 		return flow_name;

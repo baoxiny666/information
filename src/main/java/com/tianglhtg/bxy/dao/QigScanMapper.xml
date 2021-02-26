@@ -20,19 +20,46 @@
              where depart_pid = #{fuNumber}
         </select>
         
+        
+        <select id="selectBigRules" resultType="com.tianglhtg.bxy.entity.Rules">
+             select
+                id,
+                rules_name rules_big_name
+             from qig_rules_bigcategory
+        </select>
+
+        <select id="selectSmallRules" parameterType="java.lang.String" resultType="com.tianglhtg.bxy.entity.Rules">
+            select
+                id,
+                rules_big_name,
+                rules_small_name,
+         		rules_pid
+             from qig_rules_smallcategory
+             where rules_pid = #{bigNumber}
+        </select>
+        
+        
+        
          <insert id="insertData" parameterType="com.tianglhtg.bxy.entity.InsertAdvise" >
-            insert into qig_advise (depart_ment,depart_ment_son,rules_name,flow_name,advise_yij,submit_person,tele_phone,create_time,depart_ment_fu_name,depart_ment_son_name,advise_status) 
+            insert into qig_advise (depart_ment,depart_ment_son,
+            						flow_name,advise_yij,submit_person,
+            						tele_phone,create_time,depart_ment_fu_name,
+            						depart_ment_son_name,advise_status,rules_small,rules_big,
+            						rules_small_name,rules_big_name) 
             values (#{depart_ment},
             		#{depart_ment_son},
-            		#{rules_name},
             		#{flow_name},
             		#{advise_yij},
             		#{submit_person},
             		#{tele_phone},
-            		STR_TO_DATE(#{create_time},'%Y-%m-%d %H:%i:%s')
-            		,#{depart_ment_fu_name},
+            		STR_TO_DATE(#{create_time},'%Y-%m-%d %H:%i:%s'),#{depart_ment_fu_name},
             		#{depart_ment_son_name},
-            		'未查看')
+            		'未查看',
+            		#{rules_small},
+            		#{rules_big},
+            		#{rules_small_name},
+            		#{rules_big_name}
+            		)
         </insert>
         
     </mapper>

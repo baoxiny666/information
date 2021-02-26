@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.tianglhtg.bxy.entity.DepartMent;
 import com.tianglhtg.bxy.entity.InsertAdvise;
+import com.tianglhtg.bxy.entity.Rules;
 import com.tianglhtg.bxy.service.QigScanService;
 import net.sf.json.JSONArray;
 import org.apache.commons.codec.binary.Base64;
@@ -25,6 +26,22 @@ public class QigScanController {
     @Autowired
     private QigScanService qigScanService;
 
+    @RequestMapping(value="/rulesbig",produces ="application/json;charset=utf-8")
+    @ResponseBody
+    public String rulesbig(){
+        List<Rules> list =  qigScanService.selectBigRules();
+        String goBackFu = JSONArray.fromObject(list).toString();
+        return goBackFu;
+    }
+
+    @RequestMapping(value="/rulessmall",produces ="application/json;charset=utf-8")
+    @ResponseBody
+    public String rulessmall(String bigNumber){
+        List<Rules> list =  qigScanService.selectSmallRules(bigNumber);
+        String goBackSon = JSONArray.fromObject(list).toString();
+        return goBackSon;
+    }
+    
     @RequestMapping(value="/departmentfu",produces ="application/json;charset=utf-8")
     @ResponseBody
     public String fu(){
@@ -55,7 +72,12 @@ public class QigScanController {
             InsertAdvise insertAdvise = new InsertAdvise();
             //转换成 JSONObject 对象
             JSONObject decodeJsonObject = JSONObject.parseObject(insertBase64Data);
-            insertAdvise.setRules_name(decodeJsonObject.get("rules_name")==null?"":decodeJsonObject.get("rules_name").toString().replaceAll("'", "\\\\\'"));
+      
+            insertAdvise.setRules_small(Integer.valueOf(decodeJsonObject.get("rules_small").toString()));
+            insertAdvise.setRules_small_name(decodeJsonObject.get("rules_small_name")==null?"":decodeJsonObject.get("rules_small_name").toString().replaceAll("'", "\\\\\'"));
+            insertAdvise.setRules_big(Integer.valueOf(decodeJsonObject.get("rules_big").toString()));
+            insertAdvise.setRules_big_name(decodeJsonObject.get("rules_big_name")==null?"":decodeJsonObject.get("rules_big_name").toString().replaceAll("'", "\\\\\'"));
+            
             insertAdvise.setFlow_name(decodeJsonObject.get("flow_name")==null?"":decodeJsonObject.get("flow_name").toString().replaceAll("'", "\\\\\'"));
             insertAdvise.setDepart_ment(Integer.valueOf(decodeJsonObject.get("depart_ment").toString()));
             insertAdvise.setDepart_ment_son(Integer.valueOf(decodeJsonObject.get("depart_ment_son").toString()));

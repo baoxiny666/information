@@ -2,6 +2,7 @@ package com.tianglhtg.bxy.service.impl;
 
 import com.tianglhtg.bxy.entity.DepartMent;
 import com.tianglhtg.bxy.entity.InsertAdvise;
+import com.tianglhtg.bxy.entity.Rules;
 import com.tianglhtg.bxy.dao.QigScanDao;
 import com.tianglhtg.bxy.service.QigScanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,16 @@ public class QigScanServiceImpl implements QigScanService {
         int flag = qigScanDao.insertData(insertAdvise);
         return flag;
     }
+
+	@Override
+	public List<Rules> selectBigRules() {
+		 List<Rules> rulesBig = qigScanDao.selectBigRules();
+	        return rulesBig;
+	}
+
+	@Override
+	public List<Rules> selectSmallRules(String fuNumber) {
+		List<Rules> rulesSmall = qigScanDao.selectSmallRules(fuNumber);
+        return rulesSmall;
+	}
 }
